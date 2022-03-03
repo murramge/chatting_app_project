@@ -1,0 +1,13 @@
+extends base.pug
+
+
+block content
+    form(method="POST")
+        input(placeholder="Email",name="email", type="text", required)
+        input(placeholder="password",name="password", type="password", required)
+        input(placeholder="name",name="name", type="text",)
+        input(type="submit", value="Join")
+    hr
+    div
+        span Already have an account? 
+        a(href="/") log in now &rarr;

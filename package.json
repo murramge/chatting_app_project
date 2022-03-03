@@ -2,9 +2,12 @@
   "name": "chatting_app_project",
   "version": "1.0.0",
   "description": "The chat app",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
-    "express": "^4.17.3"
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.4",
+    "pug": "^3.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
@@ -13,7 +16,7 @@
     "nodemon": "^2.0.15"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node index.js"
+    "start": "nodemon --exec babel-node server.js"
   },
   "repository": {
     "type": "git",
