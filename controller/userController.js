@@ -19,6 +19,7 @@ export const getHome = async (req, res) => {
     return res.render("home", {pageTitle: "Login"});
 }
 export const postHome = async (req,res) => {
+    
     const {email, password} = req.body;
     const user = await Users.findOne({email});
     if(!user) {
@@ -30,5 +31,13 @@ export const postHome = async (req,res) => {
     }
     req.session.loggedIn = true;
     req.session.user = user;
-    return res.redirect("/join");
+    return res.redirect(`/friend/${user._id}`);
+}
+
+export const getFriend = (req, res) => {
+    return res.render("friend", {pageTitle:"Friend"});
+}
+
+export const postFriend = (req, res) => {
+
 }

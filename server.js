@@ -1,5 +1,6 @@
 import express from "express";
 import rootRouter from "./router/rootRouter";
+import friendRouter from "./router/friendRouter";
 import "./db";
 import "./models/Users";
 import session from "express-session";
@@ -24,5 +25,6 @@ app.use((req,res,next) => {
 app.use(localsMiddleware);
 
 app.use("/", rootRouter);
+app.use("/friend", friendRouter);
 
 export default app;

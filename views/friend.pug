@@ -1,0 +1,34 @@
+extends base.pug
+
+block content
+    div.screen-header 
+        h1.screen-header__title Friends
+        div.screen-header__icons
+            span
+            i.fas.fa-search.fa-lg
+            span
+            i.fas.fa-cog.fa-lg 
+
+    main.friends-screen 
+        div.user-component  
+            div.user-component__column
+                img(src="https://item.kakaocdn.net/do/1401e813472967e3b572fee1ee192eb89f17e489affba0627eb1eb39695f93dd").user-component__avatar.user-component__avatar--xl 
+                div.user-component__text
+                    h4.user-component__title #{loggedInUser.name}
+            div.user-component__column
+
+        div.friends-screen__channel 
+            div.friends-screen__channel-header
+                span Channel 
+                i.fas.fa-chevron-up.fa-xs 
+            div.user-component
+                div.user-component__column 
+                    img(src="https://item.kakaocdn.net/do/1401e813472967e3b572fee1ee192eb89f17e489affba0627eb1eb39695f93dd").user-component__avatar.user-component__avatar--sm 
+                    div.user-component__text
+                        h4.user-component__title.user-component__title--not-bold Channel 
+                div.user-component__column 
+                    div 
+                        span 2
+                        i.fas.fa-chevron-right.fa-xs 
+
+    include partials/footer.pug
