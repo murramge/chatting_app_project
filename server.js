@@ -26,5 +26,5 @@ app.use(localsMiddleware);
 app.use("/static", express.static("assets"));
 app.use("/", rootRouter);
 app.use("/friend", friendRouter);
-
+app.use("/uploads", express.static("uploads"));
 export default app;

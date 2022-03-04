@@ -45,7 +45,19 @@ export const getUserEdit = (req, res) => {
     return res.render("useredit", {pageTitle:"UserEdit"});
 }
 
-export const postUserEdit = (req, res) => {
-
+export const postUserEdit = async (req, res) => {
+    const {
+        session: {
+            user: {
+                _id
+            },
+        },
+        body: { userstatus},
+        file,
+    } = req;
+    const updatedUser = await Users.findByIdAndUpdate(_id,{ userstatus:userstatus, avatarUrl: file ? file.path : avatarUrl,}, {new: true});
+    req.session.user = updatedUser;
+    console.log(file);
+    return res.redirect(`/friend/${_id}`);
 }
 

@@ -1,4 +1,32 @@
-@import "./variable";
+//components
+@import "./components/alt-screen-header.scss";
+@import "./components/nav-bar.scss";
+@import "./components/icon-row.scss";
+@import "./components/screen-header.scss";
+@import "./components/status-bar.scss";
+@import "./components/user-component.scss";
+@import "./components/no-mobile.scss";
+
+
+//screens
+@import "./screens/friends.scss";
+@import "./screens/login.scss";
+//config
+@import "./reset.scss";
+@import "./variable.scss";
+
 body {
-    background-color: $red;
+    background-color: white;
+    color: #2e363e;
+    font-family: "Open Sans", sans-serif;
+  }
+  
+  .main-screen {
+    padding: 0px var(--horizontal-space);
+  }
+
+a {
+  color: black;
+  text-decoration: none;
 }
+  
