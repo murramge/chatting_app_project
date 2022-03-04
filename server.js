@@ -23,7 +23,7 @@ app.use((req,res,next) => {
     })
 })
 app.use(localsMiddleware);
-
+app.use("/static", express.static("assets"));
 app.use("/", rootRouter);
 app.use("/friend", friendRouter);
 

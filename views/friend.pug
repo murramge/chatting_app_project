@@ -12,14 +12,14 @@ block content
     main.friends-screen 
         div.user-component  
             div.user-component__column
+                
                 img(src="https://item.kakaocdn.net/do/1401e813472967e3b572fee1ee192eb89f17e489affba0627eb1eb39695f93dd").user-component__avatar.user-component__avatar--xl 
                 div.user-component__text
-                    h4.user-component__title #{loggedInUser.name}
-            div.user-component__column
-
+                h4.user-component__title #{loggedInUser.name}
+                a(href="/friend"+"/"+loggedInUser._id+"/edit").fas.fa-chevron-right
         div.friends-screen__channel 
             div.friends-screen__channel-header
-                span Channel 
+                span Friend
                 i.fas.fa-chevron-up.fa-xs 
             div.user-component
                 div.user-component__column 
@@ -30,5 +30,5 @@ block content
                     div 
                         span 2
                         i.fas.fa-chevron-right.fa-xs 
-
+                
     include partials/footer.pug

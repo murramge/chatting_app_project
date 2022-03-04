@@ -41,3 +41,11 @@ export const getFriend = (req, res) => {
 export const postFriend = (req, res) => {
 
 }
+export const getUserEdit = (req, res) => {
+    return res.render("useredit", {pageTitle:"UserEdit"});
+}
+
+export const postUserEdit = (req, res) => {
+
+}
+
