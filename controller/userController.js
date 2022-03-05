@@ -34,8 +34,11 @@ export const postHome = async (req,res) => {
     return res.redirect(`/friend/${user._id}`);
 }
 
-export const getFriend = (req, res) => {
-    return res.render("friend", {pageTitle:"Friend"});
+export const getFriend = async (req, res) => {
+    const {id} = req.params;
+    const user = await Users.findById(id);
+    const friend = await Users.findById(user.friends);
+    return res.render("friend", {pageTitle:"Friend",  friend , user});
 }
 
 export const postFriend = (req, res) => {
@@ -52,12 +55,39 @@ export const postUserEdit = async (req, res) => {
                 _id
             },
         },
-        body: { userstatus},
+        body: { userstatus, name},
         file,
     } = req;
-    const updatedUser = await Users.findByIdAndUpdate(_id,{ userstatus:userstatus, avatarUrl: file ? file.path : avatarUrl,}, {new: true});
+    const updatedUser = await Users.findByIdAndUpdate(_id,{ name:name, userstatus:userstatus, avatarUrl: file ? file.path : avatarUrl,}, {new: true});
     req.session.user = updatedUser;
     console.log(file);
     return res.redirect(`/friend/${_id}`);
 }
 
+export const logout = (req, res) => {
+    req.session.destroy();
+    return res.redirect("/");
+};
+
+export const getFriendAdd = (req, res) => {
+    return res.render("friendadd", {pageTitle: "FriendAdd"});
+}
+export const postFriendAdd = async (req, res) => {
+    const {id} = req.params;
+    const {
+        body: {email},
+    } = req;
+    const exists = await Users.findOne(
+        {email},
+        )
+    if (!exists) {
+        return res.redirect(`/friend/${id}/add`);
+    }
+    const friend = exists;
+    console.log(id);
+    const user = await Users.findById(id);
+    user.friends.push(friend);
+    user.save();
+
+
+}

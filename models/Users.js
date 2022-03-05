@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema ({
     avatarUrl: String,
     password: {type:String},
     userstatus: {type:String},
+    friends: [{type:mongoose.Schema.Types.ObjectId, ref:"Users"}],
 })
 
 userSchema.pre('save', async function() {

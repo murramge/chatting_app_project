@@ -1,24 +1,26 @@
 extends base.pug
 
+
 block content
     div.screen-header 
         h1.screen-header__title Friends
         div.screen-header__icons
             span
-            i.fas.fa-search.fa-lg
-            span
-            i.fas.fa-cog.fa-lg 
-
+                a(href="/friend"+"/"+loggedInUser._id+"/add").fa-solid.fa-user-plus.fa-xl 
+    
     main.friends-screen 
         div.user-component  
-                div.user-component__column 
-                    img(src="/"+loggedInUser.avatarUrl).user-component__avatar.user-component__avatar--sm 
+                div.user-component__column
+                    if(!loggedInUser.avatarUrl)
+                        img(src="https://item.kakaocdn.net/do/1401e813472967e3b572fee1ee192eb89f17e489affba0627eb1eb39695f93dd").user-component__avatar.user-component__avatar--sm 
+                    if(loggedInUser.avatarUrl)
+                        img(src="/"+loggedInUser.avatarUrl).user-component__avatar.user-component__avatar--sm 
                     div.user-component__text
                         h4.user-component__title.user-component__title--not-bold #{loggedInUser.name} 
                             span.user-component__status #{loggedInUser.userstatus}
                 div.user-component__column 
                     div 
-                        a(href="/friend"+"/"+loggedInUser._id+"/edit").fas.fa-chevron-right
+                        a(href="/friend"+"/"+loggedInUser._id+"/edit").fas.fa-pen
                 
         
         div.friends-screen__channel 
@@ -27,12 +29,17 @@ block content
                 i.fas.fa-chevron-up.fa-xs 
             div.user-component
                 div.user-component__column 
-                    img(src="https://item.kakaocdn.net/do/1401e813472967e3b572fee1ee192eb89f17e489affba0627eb1eb39695f93dd").user-component__avatar.user-component__avatar--sm 
-                    div.user-component__text
-                        h4.user-component__title.user-component__title--not-bold Channel 
+                    if (!friend)
+        
+                    if (friend) 
+                        if (!friend.avatarUrl)
+                            img(src="https://item.kakaocdn.net/do/1401e813472967e3b572fee1ee192eb89f17e489affba0627eb1eb39695f93dd").user-component__avatar.user-component__avatar--sm 
+                        else
+                            img(src="/"+friend.avatarUrl).user-component__avatar.user-component__avatar--sm 
+                        div.user-component__text #{friend.name}
+                        span.user-component__status #{friend.userstatus}
+                        h4.user-component__title.user-component__title--not-bold 
                 div.user-component__column 
-                    div 
-                        span 2
-                        i.fas.fa-chevron-right.fa-xs 
+
                 
     include partials/footer.pug
