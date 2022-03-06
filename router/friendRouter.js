@@ -7,4 +7,6 @@ const friendRouter = express.Router();
 friendRouter.route("/:id([0-9a-f]{24})").get(getFriend).post(postFriend);
 friendRouter.route("/:id([0-9a-f]{24})/edit").get(getUserEdit).post(uploadFiles.single("avatar"), postUserEdit);
 friendRouter.route("/:id([0-9a-f]{24})/add").get(getFriendAdd).post(postFriendAdd)
+
+
 export default friendRouter;

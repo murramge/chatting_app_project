@@ -1,0 +1,19 @@
+extends base.pug
+
+block content
+    div.screen-header
+        h1.screen-header__title Chats 
+        div.screen-header__icons  
+            i.fas.fa-search.fa-lg 
+    
+    div.main-screen 
+        a(href="chat.html")
+            div.user-component
+                div.user-component__column 
+                    img(src="https://item.kakaocdn.net/do/1401e813472967e3b572fee1ee192eb89f17e489affba0627eb1eb39695f93dd").user-component__avatar.user-component__avatar
+                    div.user-component__text 
+                        h4.user-component__title Bojak 
+                        h6.user-component__subtitle kokoko
+                div.user-component__column
+                    span.user-component__time 21:22
+                    div.badge 1  

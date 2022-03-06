@@ -1,10 +1,12 @@
 import express from "express";
 import rootRouter from "./router/rootRouter";
 import friendRouter from "./router/friendRouter";
+import chatRouter from "./router/chatRouter";
 import "./db";
 import "./models/Users";
 import session from "express-session";
 import { localsMiddleware } from "./middlewares";
+
 
 const app = express();
 app.set("view engine", "pug");
@@ -26,5 +28,6 @@ app.use(localsMiddleware);
 app.use("/static", express.static("assets"));
 app.use("/", rootRouter);
 app.use("/friend", friendRouter);
+app.use("/chat",chatRouter);
 app.use("/uploads", express.static("uploads"));
 export default app;

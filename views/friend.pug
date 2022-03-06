@@ -27,7 +27,6 @@ block content
         div.friends-screen__channel 
             div.friends-screen__channel-header
                 span Friend
-                i.fas.fa-chevron-up.fa-xs 
             each val, index in friend
                 div.user-component
                     div.user-component__column 
@@ -38,5 +37,6 @@ block content
                                 img(src="/"+friend[index].avatarUrl).user-component__avatar.user-component__avatar--sm 
                             div.user-component__text #{friend[index].name}
                             span.user-component__status #{friend[index].userstatus}
-                    div.user-component__column 
+                    div.user-component__column
+                    i.fas.fa-chevron-right.fa-xs
     include partials/footer.pug

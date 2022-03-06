@@ -33,7 +33,7 @@ export const postHome = async (req,res) => {
     req.session.user = user;
     return res.redirect(`/friend/${user._id}`);
 }
-let friend;
+
 
 export const getFriend = async (req, res) => {
     const {id} = req.params;
