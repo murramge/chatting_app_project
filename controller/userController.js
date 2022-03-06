@@ -39,7 +39,6 @@ export const getFriend = async (req, res) => {
     const {id} = req.params;
     const user = await Users.findById(id).populate('friends');
     const friend = user.friends
-    console.log(friend[0].name);
     res.render("friend", {pageTitle:"Friend", friend});  
 }
 
