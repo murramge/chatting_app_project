@@ -33,12 +33,14 @@ export const postHome = async (req,res) => {
     req.session.user = user;
     return res.redirect(`/friend/${user._id}`);
 }
+let friend;
 
 export const getFriend = async (req, res) => {
     const {id} = req.params;
-    const user = await Users.findById(id);
-    const friend = await Users.findById(user.friends);
-    return res.render("friend", {pageTitle:"Friend",  friend , user});
+    const user = await Users.findById(id).populate('friends');
+    const friend = user.friends
+    console.log(friend[0].name);
+    res.render("friend", {pageTitle:"Friend", friend});  
 }
 
 export const postFriend = (req, res) => {
@@ -88,6 +90,5 @@ export const postFriendAdd = async (req, res) => {
     const user = await Users.findById(id);
     user.friends.push(friend);
     user.save();
-
 
 }
