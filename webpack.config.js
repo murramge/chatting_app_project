@@ -2,13 +2,16 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const path = require("path");
 module.exports = {
-    entry: "./client/js/main.js",
+    entry: {
+        main:"./client/js/main.js",
+        chatting:"./client/js/chatting.js",
+    },
     plugins: [new MiniCssExtractPlugin({
         filename: "css/styles.css",
     })],
     mode: "development",
     output: {
-        filename:"js/main.js",
+        filename:"js/[name].js",
         path: path.resolve(__dirname, "assets"),
         clean: true,
     },
