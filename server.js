@@ -25,7 +25,7 @@ io.sockets.on('connection', function(socket){
     // name과 message로 분류하여 dbdate에 저장 후 socket.io 모듈 메서드를 통해 html로 데이터를 전달합니당
     // 이 때 emit 는 preload , dbData로 사용했는데 이것은 html 메서드와 짝이 되어 html 측에 db data를 전달합니다!!
     Chat.find(function (err, result){
-        for(const i=0; i<result.length; i++){
+        for(let i=0; i<result.length; i++){
             const dbData = {name: result[i].username, message:result[i].message};
             io.sockets.sockets[socket.id].emit('preload', dbData);
             console.log(dbData);
