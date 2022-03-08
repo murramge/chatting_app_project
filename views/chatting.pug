@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title talk 
+        //- script(src="http://code.jquery.com/jquery-1.7.1.js")
+        script(src="/socket.io/socket.io.js")
+        //- script(src="/static/js/chatting.js")
+    body 
+        div
+            h1 talk 
+            div.form-group
+                label(for="User Name") user name 
+                input(type="text" class="form-control" id="name" placeholder="User Name")
+            div.form-group
+                label(for="Message") message 
+                input(type="text" class="form-control" id="message" placeholder="Message")
+            div.form-group 
+                button#button Send message 
+            div.content 

@@ -1,10 +1,5 @@
 import Users from "../models/Users";
 
-export const getChat = async (req, res) => {
-    return res.render("chat", {pageTitle: "Chat"});
+export const chatting = (rep, res) => {
+    return res.status(400).render("chatting", {pageTitle: "chatting"});
 }
-
-export const postChat = async (req, res) => {
-    
-}
-
