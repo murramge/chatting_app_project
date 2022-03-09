@@ -1,8 +1,8 @@
 import express from "express";
-import {chatting} from "../controller/chatController";
+import {getchatting, postchatting} from "../controller/chatController";
 
 const chatRouter = express.Router();
 
-chatRouter.route("/chatting").get(chatting);
+chatRouter.route("/:id([0-9a-f]{24})").get(getchatting).post(postchatting);
 
 export default chatRouter;

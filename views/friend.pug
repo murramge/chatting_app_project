@@ -38,5 +38,5 @@ block content
                             div.user-component__text #{friend[index].name}
                             span.user-component__status #{friend[index].userstatus}
                     div.user-component__column
-                    a(href="/chat/chatting").fas.fa-chevron-right.fa-xs
+                    a(href="/chat"+"/"+friend[index]._id).fas.fa-chevron-right.fa-xs
     include partials/footer.pug

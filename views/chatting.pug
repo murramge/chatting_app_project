@@ -10,12 +10,19 @@ html(lang="en")
     body 
         div
             h1 talk 
-            div.form-group
-                label(for="User Name") user name 
-                input(type="text" class="form-control" id="name" placeholder="User Name")
-            div.form-group
-                label(for="Message") message 
-                input(type="text" class="form-control" id="message" placeholder="Message")
-            div.form-group 
-                button#button Send message 
+            form(method="POST").form-group
+                //- label(for="User Name") user name 
+                //- input(type="text" class="form-control" id="name" placeholder="User Name")
+                //- label(for="Message") message 
+                //- input(type="text" class="form-control" id="message" placeholder="Message")
+                //- button#button Send message 
+                input(placeholder="UserName",name="User Name", type="text", id="name", class="form-control" required)
+                span #{user_name}
+                span #{friend_name}
+                input(placeholder="Message",name="Message", type="text", id="message", class="form-control" required)
+                input(type="submit", value="Send message", id="button")
             div#content
+
+        //- div.background 
+        //-     div.msgbox#messages 
+        //-         input(id="input", class="msg", type="text")
