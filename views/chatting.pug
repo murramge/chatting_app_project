@@ -2,29 +2,16 @@ doctype html
 html(lang="en")
     head
         meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(name="viewport", content="width=device-width,initial-scale=1.0")
         title talk 
+        link(rel="stylesheet", href="/static/css/styles.css")
         script(src="http://code.jquery.com/jquery-1.7.1.js")
         script(src="/socket.io/socket.io.js")
         script(src="/static/js/chatting.js")
-    body 
-        div
-            h1 talk 
+    body.background
             form(method="POST").form-group
-                //- label(for="User Name") user name 
-                //- input(type="text" class="form-control" id="name" placeholder="User Name")
-                //- label(for="Message") message 
-                //- input(type="text" class="form-control" id="message" placeholder="Message")
-                //- button#button Send message 
-            //-     input(placeholder="UserName",name="User Name", type="text", id="name", class="form-control" required)
-
-            //-     span #{friend_name}
-            //-     input(placeholder="Message",name="Message", type="text", id="message", class="form-control" required)
-            //-     input(type="submit", value="Send message", id="button")
-            //- div#content
-
-        div.background 
-            div#content
-                input( class="msg", id="message", type="text")
-                input( value=user_name, id="name")
-                button(id="button", class="send", type="button") 전송
+                div#content
+                input(placeholder="UserName",name="User Name", type="text", id="name", class="form-control" value=user_name , required)
+                div#form-group
+                    input(placeholder="",name="Message", type="text", id="message", class="form-control" required)
+                    input(type="submit", value="전송", id="button")
