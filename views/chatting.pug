@@ -16,13 +16,15 @@ html(lang="en")
                 //- label(for="Message") message 
                 //- input(type="text" class="form-control" id="message" placeholder="Message")
                 //- button#button Send message 
-                input(placeholder="UserName",name="User Name", type="text", id="name", class="form-control" required)
-                span #{user_name}
-                span #{friend_name}
-                input(placeholder="Message",name="Message", type="text", id="message", class="form-control" required)
-                input(type="submit", value="Send message", id="button")
-            div#content
+            //-     input(placeholder="UserName",name="User Name", type="text", id="name", class="form-control" required)
 
-        //- div.background 
-        //-     div.msgbox#messages 
-        //-         input(id="input", class="msg", type="text")
+            //-     span #{friend_name}
+            //-     input(placeholder="Message",name="Message", type="text", id="message", class="form-control" required)
+            //-     input(type="submit", value="Send message", id="button")
+            //- div#content
+
+        div.background 
+            div#content
+                input( class="msg", id="message", type="text")
+                input( value=user_name, id="name")
+                button(id="button", class="send", type="button") 전송
