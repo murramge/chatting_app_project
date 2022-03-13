@@ -27,7 +27,7 @@ io.sockets.on('connection', function(socket){
     //let i=result.length i>0; i--
     Chat.find(function (err, result){
         for(let i=0; i<result.length; i++){
-            let dbData = {name: result[i].username, message:result[i].message};
+            let dbData = {userid: result[i].userid, friendid: result[i].friendid, friendname:result[i].friendname, name: result[i].username, chat_id: result[i].chat_id, message:result[i].message};
             io.sockets.sockets[socket.id].emit('preload', dbData);
             // console.log(dbData);
         }
@@ -36,10 +36,10 @@ io.sockets.on('connection', function(socket){
     //현재DB의 콜렉션 모델에 추가(new chat)후 저장(save)한다. 만약 저장 시 에러가 발생하면 error가 출력된다.
     socket.on('message', function(data) {
         io.sockets.emit('message', data);
-        const chat = new Chat({ username: data.name, message: data.message});
+        const chat = new Chat({ friendid: data.friendid ,userid:data.userid ,username: data.name, friendname: data.friendname, message: data.message, chat_id: data.chat_id});
         chat.save(function (err, data){
             if (err) {
-                console.log("error");
+                console.log(err);
             }
             console.log('message is inserted');
             // console.log(chat);

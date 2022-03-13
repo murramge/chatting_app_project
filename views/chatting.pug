@@ -12,6 +12,10 @@ html(lang="en")
             form(method="POST").form-group
                 div#content
                 input(placeholder="UserName",name="User Name", type="text", id="name", class="form-control" value=user_name , required)
+                input(placeholder="FriendName",name="Friend Name", type="text", id="friendname", class="form-control" value=friend_name , required)
+                input(placeholder="ChatId",name="Chat Id", type="text", id="chat_id", class="form-control" value=chat_id , required)
+                input(placeholder="UserId",name="User Id", type="text", id="userid", class="form-control" value=user_id , required)
+                input(placeholder="FriendId",name="Friend Id", type="text", id="friendid", class="form-control" value=friend_id , required)
                 div#form-group
                     input(placeholder="",name="Message", type="text", id="message", class="form-control" required)
                     input(type="submit", value="전송", id="button")

@@ -24,10 +24,13 @@ $(function(){
     $(document).on("click",'#button', (function(){
     socket.emit('message',
         {
+            chat_id: $('#chat_id').val(),
+            userid: $('#userid').val(),
+            friendid: $('#friendid').val(),
             name: $('#name').val(),
+            friendname: $('#friendname').val(),
             message:$('#message').val()
-        }
-        );
+        });
         $('#message').val('');
     }));
 
