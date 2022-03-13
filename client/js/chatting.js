@@ -12,23 +12,24 @@ $(function(){
 
     socket.on('preload',function(data){
         let name = document.getElementById("name").value;
+        let chatid = document.getElementById("_id").value;
+        let messages = data.message;
+        console.log(messages);
         if(name == data.name) {
-        $('#content').append($('<p class="talk me">').text(data.message)); 
-        }
-        else {
-        $('#content').append($('<p class="talk other">').text(data.message));
+            if(chatid == data._id) {
+            for (let i=0; i< messages.length; i++) {
+            $('#content').append($('<p class="talk me">').text(messages[i]));
+            } 
             }
+        }
         
     });
 
     $(document).on("click",'#button', (function(){
     socket.emit('message',
         {
-            chat_id: $('#chat_id').val(),
-            userid: $('#userid').val(),
-            friendid: $('#friendid').val(),
+            _id: $('#_id').val(),
             name: $('#name').val(),
-            friendname: $('#friendname').val(),
             message:$('#message').val()
         });
         $('#message').val('');

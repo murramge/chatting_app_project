@@ -1,0 +1,6 @@
+extends base.pug
+
+block content
+    div
+        each val, index in chat
+            a(href="/chat"+"/"+chat[index]._id+"/room").fas.fa-chevron-right.fa-xs

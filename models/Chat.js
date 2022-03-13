@@ -6,8 +6,7 @@ const chatSchema = new mongoose.Schema ({
     friendid: [{type:String, ref:"Users"}],
     username: String, 
     friendname: String,
-    chat_id: String,
-    message: String,
+    message: [String],
 })
 
 
