@@ -84,8 +84,9 @@ export const getchatting = async (req, res) => {
 
     const {id} = req.params;
     const chat = await Chat.findById(id);
-    console.log(chat);
-    return res.status(400).render("chatting", {pageTitle: "chatting", chat});
+    const chat_id = chat._id;
+    const chattingroom_id = chat.chatid;
+    return res.status(400).render("chatting", {pageTitle: "chatting",chat_id,chattingroom_id});
 
 }
 
