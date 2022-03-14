@@ -12,11 +12,11 @@ $(function(){
 
     socket.on('preload',function(data){
         let name = document.getElementById("name").value;
-        let chatid = document.getElementById("_id").value;
+        let chatid = document.getElementById("chat_id").value;
         let messages = data.message;
         console.log(messages);
         if(name == data.name) {
-            if(chatid == data._id) {
+            if(chatid == data.chat_id) {
             for (let i=0; i< messages.length; i++) {
             $('#content').append($('<p class="talk me">').text(messages[i]));
             } 
@@ -28,7 +28,7 @@ $(function(){
     $(document).on("click",'#button', (function(){
     socket.emit('message',
         {
-            _id: $('#_id').val(),
+            _id: $('#chat_id').val(),
             name: $('#name').val(),
             message:$('#message').val()
         });

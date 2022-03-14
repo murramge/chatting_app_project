@@ -12,43 +12,80 @@ export const getfriendinfo = async (req,res) => {
         },
     } = req;
 
-    const friend = await Users.findById(id);
-    const friend_name = friend.name;
+    let friend = await Users.findById(id);
+    let friend_name = friend.name;
 
-    const user_name = name;
-    const user_id = _id;
-    const friend_id = id;
+    let user_name = name;
+    let user_id = _id;
+    let friend_id = id;
     const exists = await Chat.exists({$and:[
         {userid:user_id},{friendid:friend_id}
     ]});  
+    const exist = await Chat.exists({$and:[
+        {userid:friend_id},{friendid:user_id}
+    ]});
 
-    const chat = await Chat.find({ friendid: [friend_id] });
+    let chat = await Chat.find({ friendid: [friend_id] });
 
     if(exists){
         return res.status(400).render("friendinfo", {pageTitle: "friendinfo",friend_name,user_name,user_id,friend_id,chat});
     }
-
     else {
-
-    await Chat.create({
+    function generateRandomCode(n) {
+        let str = ''
+        for (let i = 0; i < n; i++) {
+        str += Math.floor(Math.random() * 10)
+        }
+        return str
+    }
+    let chatid = generateRandomCode(6);
+    let chat1 = await Chat.find({ friendid: [user_id]});
+    console.log(chat1);
+    if(chat1[0]==null) {
+        chat = await Chat.find({ friendid: [friend_id] });
+        const chatusers = await Chat.create({
         userid: user_id,
         friendid: friend_id,
         username: user_name,
         friendname: friend_name,
-    })
-    const chat = await Chat.find({ friendid: [friend_id] });
+        chatid: chatid,
+        })
+        console.log(chatusers);
+        
     return res.status(400).render("friendinfo", {pageTitle: "friendinfo",friend_name,user_name,user_id,friend_id,chat});
     }
+    else if(chat1[0]==[user_id]) {
+        try {
+            chat = await Chat.find({ friendid: [friend_id] });
+            if(chat != chat1){
+            const chat1_id = chat1[0].chatid; 
+            const chat12 = await Chat.findByIdAndUpdate(chat._id,{
+                chatid:chat1_id,
+            })
+    
+            console.log(chat12);
+        
+            return res.status(400).render("friendinfo", {pageTitle: "friendinfo",chat});
+            }
+        }
+        catch {
+            chat = await Chat.find({ friendid: [friend_id] });
+            console.log("hi")
+            return res.status(400).render("friendinfo", {pageTitle: "friendinfo",chat});
+        }
+    }
+    const chatUser = await Chat.findOne({friend_id});
 
 
+    return res.status(400).render("friendinfo", {pageTitle: "friendinfo",friend_name,user_name,user_id,friend_id,chatUser});
+}
 }
 export const getchatting = async (req, res) => {
+
     const {id} = req.params;
     const chat = await Chat.findById(id);
-    const _id = id;
-    const username = chat.username;
-    const friendname = chat.friendname;
-    return res.status(400).render("chatting", {pageTitle: "chatting",username,friendname,_id});
+    console.log(chat);
+    return res.status(400).render("chatting", {pageTitle: "chatting", chat});
 
 }
 
@@ -58,3 +95,4 @@ export const postchatting = (req, res) => {
 
 
 }
+

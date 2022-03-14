@@ -7,6 +7,7 @@ const chatSchema = new mongoose.Schema ({
     username: String, 
     friendname: String,
     message: [String],
+    chatid: String,
 })
 
 
