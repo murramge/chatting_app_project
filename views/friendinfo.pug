@@ -2,8 +2,10 @@ extends base.pug
 
 block content
     div
-        if(chatUser)
-            a(href="/chat"+"/"+chatUser._id+"/room").fas.fa-chevron-right.fa-xs
+
+        if(chat1)
+            a(href="/chat"+"/"+chat1._id+"/room").fas.fa-chevron-right.fa-xs
+        
         else
             each val, index in chat
                 a(href="/chat"+"/"+chat[index]._id+"/room").fas.fa-chevron-right.fa-xs

@@ -233,6 +233,10 @@
   display: block;
 }
 
+.hidden {
+  display: none;
+}
+
 #no-mobile {
   position: absolute;
   z-index: 99;

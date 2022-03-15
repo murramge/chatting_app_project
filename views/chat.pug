@@ -7,13 +7,28 @@ block content
             i.fas.fa-search.fa-lg 
     
     div.main-screen 
-        a(href="chat.html")
-            div.user-component
-                div.user-component__column 
-                    img(src="https://item.kakaocdn.net/do/1401e813472967e3b572fee1ee192eb89f17e489affba0627eb1eb39695f93dd").user-component__avatar.user-component__avatar
-                    div.user-component__text 
-                        h4.user-component__title Bojak 
-                        h6.user-component__subtitle kokoko
-                div.user-component__column
-                    span.user-component__time 21:22
-                    div.badge 1  
+        each val, index in chat
+            a(href="/chat"+"/"+chat[index]._id+"/room")
+                div.hidden 
+                    #{chat_user = chat[index].userid} 
+                    #{messagelength = chat[index].message.length}
+                if (id == chat_user)
+                    div.user-component
+                        div.user-component__column 
+                            img(src="/"+sameuserFriend[index].avatarUrl).user-component__avatar.user-component__avatar
+                            div.user-component__text 
+                                h4.user-component__title #{chat[index].friendname}
+                                h6.user-component__subtitle #{chat[index].message}
+                        div.user-component__column
+                            span.user-component__time 21:22
+                            div.badge 1  
+                else if (id != chat_user)
+                    div.user-component
+                        div.user-component__column 
+                            img(src="/"+differuserFriend[index].avatarUrl).user-component__avatar.user-component__avatar
+                            div.user-component__text 
+                                h4.user-component__title #{chat[index].username}
+                                h6.user-component__subtitle #{chat[index].message}
+                        div.user-component__column
+                            span.user-component__time 21:22
+                            div.badge 1  
