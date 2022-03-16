@@ -7,9 +7,12 @@
     margin-bottom: 15px;
     margin-top: -15px;
   }
-  
+  #friend-background {
+    background-color: #fff5e1
+  }
   #friends-display-link i {
     color: rgba(0, 0, 0, 0.3);
+  
   }
   
   .friends-screen {
@@ -17,13 +20,21 @@
   }
   
   .friends-screen__channel {
+    background-color: white;
+    border-radius: 40px 40px 0 0;
+    position: relative;
+    width: 100%;
+    height: 120vh;
+    max-width: 768px;
     margin-top: 25px;
-    border-top: var(--main-border);
     padding-top: 15px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
   }
   
   .friends-screen__channel-header {
     margin-bottom: 30px;
+    margin-top:15px;
+    margin-left: 15px;
     display: flex;
     justify-content: space-between;
     color: rgba(0, 0, 0, 0.5);
@@ -58,4 +69,8 @@
     font-size: 15px;
     margin-left: 10px;
     opacity: 0.6;
+  }
+
+  .friend_info_link:hover { 
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.13);
   }

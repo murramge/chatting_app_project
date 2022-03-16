@@ -2,18 +2,20 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #f9f9fa;
+    background-color: var(--button);
     padding: 20px 50px;
     box-sizing: border-box;
-    border-top: 1px solid rgba(121, 121, 121, 0.3);
+    border-radius: 40px 40px 0 0;
+    border-style: none;
   }
   .nav__list {
+    color: white;
     display: flex;
     justify-content: space-between;
   }
   .nav__link {
     position: relative;
-    color: #2e363e;
+    color: white;
   }
   
   @keyframes notificationAnimation {
@@ -46,7 +48,7 @@
   }
   
   .nav__btn {
-    
+    color:white;
     transform: translateY(50px);
     opacity: 0;
     animation: appearBtnAnimation 0.3s ease-in-out forwards;

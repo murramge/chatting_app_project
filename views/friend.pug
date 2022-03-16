@@ -1,42 +1,42 @@
 extends base.pug
-
-include mixins/userfriend
-
-block content
-    div.screen-header 
-        h1.screen-header__title Friends
-        div.screen-header__icons
-            span
-                a(href="/friend"+"/"+loggedInUser._id+"/add").fa-solid.fa-user-plus.fa-xl 
-    
-    main.friends-screen 
-        div.user-component  
-                div.user-component__column
-                    if(!loggedInUser.avatarUrl)
-                        img(src="https://item.kakaocdn.net/do/1401e813472967e3b572fee1ee192eb89f17e489affba0627eb1eb39695f93dd").user-component__avatar.user-component__avatar--sm 
-                    if(loggedInUser.avatarUrl)
-                        img(src="/"+loggedInUser.avatarUrl).user-component__avatar.user-component__avatar--sm 
-                    div.user-component__text
-                        h4.user-component__title.user-component__title--not-bold #{loggedInUser.name} 
-                            span.user-component__status #{loggedInUser.userstatus}
-                div.user-component__column 
-                    div 
-                        a(href="/friend"+"/"+loggedInUser._id+"/edit").fas.fa-pen
-                
+block body
+    body#friend-background
+    block content
+        div.screen-header 
+            h1.screen-header__title Friends
+            div.screen-header__icons
+                span
+                    a(href="/friend"+"/"+loggedInUser._id+"/add").fa-solid.fa-user-plus.fa-xl 
         
-        div.friends-screen__channel 
-            div.friends-screen__channel-header
-                span Friend
-            each val, index in friend
-                div.user-component
-                    div.user-component__column 
-                        if (friend)
-                            if (!friend[index].avatarUrl)
-                                img(src="https://item.kakaocdn.net/do/1401e813472967e3b572fee1ee192eb89f17e489affba0627eb1eb39695f93dd").user-component__avatar.user-component__avatar--sm
-                            else
-                                img(src="/"+friend[index].avatarUrl).user-component__avatar.user-component__avatar--sm 
-                            div.user-component__text #{friend[index].name}
-                            span.user-component__status #{friend[index].userstatus}
+        main.friends-screen 
+            div.user-component  
                     div.user-component__column
-                    a(href="/chat"+"/"+friend[index]._id).fas.fa-chevron-right.fa-xs
-    include partials/footer.pug
+                        if(!loggedInUser.avatarUrl)
+                            img(src="https://item.kakaocdn.net/do/1401e813472967e3b572fee1ee192eb89f17e489affba0627eb1eb39695f93dd").user-component__avatar.user-component__avatar--sm 
+                        if(loggedInUser.avatarUrl)
+                            img(src="/"+loggedInUser.avatarUrl).user-component__avatar.user-component__avatar--sm 
+                        div.user-component__text
+                            h4.user-component__title.user-component__title--not-bold #{loggedInUser.name} 
+                                span.user-component__status #{loggedInUser.userstatus}
+                    div.user-component__column 
+                        div.user-edit-profile
+                            a(href="/friend"+"/"+loggedInUser._id+"/edit") Edit Profile
+                    
+            
+            div.friends-screen__channel 
+                div.friends-screen__channel-header
+                    span Friend
+                each val, index in friend
+                    div.friend_info_link
+                        a(href="/chat"+"/"+friend[index]._id).friend_info_link
+                            div.user-component
+                                div.user-component__column 
+                                    if (friend)
+                                        if (!friend[index].avatarUrl)
+                                            img(src="https://item.kakaocdn.net/do/1401e813472967e3b572fee1ee192eb89f17e489affba0627eb1eb39695f93dd").user-component__avatar.user-component__avatar--sm
+                                        else
+                                            img(src="/"+friend[index].avatarUrl).user-component__avatar.user-component__avatar--sm 
+                                        div.user-component__text #{friend[index].name}
+                                        span.user-component__status #{friend[index].userstatus}
+                                div.user-component__column
+        include partials/footer.pug

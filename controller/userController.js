@@ -23,11 +23,11 @@ export const postHome = async (req,res) => {
     const {email, password} = req.body;
     const user = await Users.findOne({email});
     if(!user) {
-        return res.render("home", {pageTitle: "Login",  errorMessage: "An account with this password does not exists"});
+        return res.render("home", {pageTitle: "Login",  errorMessage: "계정이 없습니다 :("});
     }
     const ok = await bcrypt.compare(password, user.password);
     if(!ok) {
-        return res.render("home", {pageTitle: "Login",  errorMessage: "wrong password"});
+        return res.render("home", {pageTitle: "Login",  errorMessage: "비밀번호가 틀렸습니다 다시 확인해주세요 :("});
     }
     req.session.loggedIn = true;
     req.session.user = user;
@@ -53,7 +53,8 @@ export const postUserEdit = async (req, res) => {
     const {
         session: {
             user: {
-                _id
+                _id,
+                avatarUrl
             },
         },
         body: { userstatus, name},

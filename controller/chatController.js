@@ -14,6 +14,8 @@ export const getfriendinfo = async (req,res) => {
 
     let friend = await Users.findById(id);
     let friend_name = friend.name;
+    let friend_statusmessage = friend.userstatus;
+    let friend_avatarUrl = friend.avatarUrl;
     let user_name = name;
     let user_id = _id;
     let friend_id = id;
@@ -33,7 +35,7 @@ export const getfriendinfo = async (req,res) => {
             {userid:user_id},{friendid:friend_id}
         ]});
     
-        return res.status(400).render("friendinfo", {pageTitle: "friendinfo",friend_name,user_name,user_id,friend_id,chat});
+        return res.status(400).render("friendinfo", {pageTitle: "friendinfo",friend_name,user_name,user_id,friend_id,chat,friend_statusmessage,friend_avatarUrl});
     }
     else {
     function generateRandomCode(n) {
@@ -49,9 +51,7 @@ export const getfriendinfo = async (req,res) => {
     ]});
     // console.log(chat1);
     if(chat1[0]==null) {
-        chat = await Chat.find({$and:[
-            {userid:user_id},{friendid:friend_id}
-        ]});
+
         const chatusers = await Chat.create({
         userid: user_id,
         friendid: friend_id,
@@ -60,7 +60,9 @@ export const getfriendinfo = async (req,res) => {
         chatid: chatid,
         })
         // console.log(chatusers);
-        
+        chat = await Chat.find({$and:[
+            {userid:user_id},{friendid:friend_id}
+        ]});        
     return res.status(400).render("friendinfo", {pageTitle: "friendinfo",friend_name,user_name,user_id,friend_id,chat});
     }
     else if(chat1[0]==[user_id]) {
@@ -112,7 +114,7 @@ export const getchattingroom = async (req, res) => {
     const chat = await Chat.find({$or:[
         {userid:id},{friendid:id}
     ]});
-    // console.log(chat);
+
     let sameuserFriendId;
     let differuserFriendid;
     let sameuserFriend;
@@ -131,17 +133,7 @@ export const getchattingroom = async (req, res) => {
     console.log(differuserFriendid);
     }    
     sameuserFriend = await Users.find({_id:sameuserFriendId});
-    // console.log(sameuserFriend);
-    // sameuserFriend = await Users.find({_id:sameuserFriendId[i]});
-    // console.log(sameuserFriend);
     differuserFriend= await Users.find({_id:differuserFriendid});
-    for(let j = 0; j < sameuserFriend.length; j++){
-    // console.log(sameuserFriend[j].avatarUrl)
-    }
-
-    for(let k = 0; k < differuserFriend.length; k++){
-    // console.log(differuserFriend[k].avatarUrl)
-    }
     
     return res.status(400).render("chat", {pageTitle: "chat",chat,id,sameuserFriendId,sameuserFriend,differuserFriendid,differuserFriend});
 }

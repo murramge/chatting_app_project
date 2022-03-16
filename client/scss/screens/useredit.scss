@@ -1,0 +1,92 @@
+#useredit-background {
+    background-color: #fff5e1
+}
+.profile-screen {
+    display: flex;
+    height: 80vh;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 60px;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 40px 40px 0 0;
+
+}
+.user-component__avatar--xxl {
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
+
+.profile-screen__wrapper .user-component {
+    flex-direction: column;
+    margin-top:-350px
+}
+input#avatar{
+    display: none;
+}
+
+.profile-screen__wrapper .user-component__title {
+    color: black;
+    margin: 1rem 0;
+    margin-left:-20px;
+}
+.profile-avatar-edit {
+    margin-left: 180px;
+    position: absolute;
+    margin-top: -15px;
+    color:rgb(168, 168, 168);
+}
+input {
+    background-color: transparent;
+    outline: none;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-left-width: 0px;
+    color: black;
+    border-bottom-color: white;
+}
+
+input:focus {
+    color :gray;
+}
+
+.profile__name, .profile__userstatus, .profile__userupdate{
+    width: auto;
+    height: inherit;
+    text-align: center;
+}
+#usereditname, #usereditstatus, #usereditupdate{
+    width: 350px;
+    height: inherit;
+    text-align: center;
+    margin-left: -10px;
+    padding: 0;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+.column{
+    border: 1px solid rgba(122, 122, 122, 0.219);
+}
+#usereditstatus {
+    margin-top: 15px;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+#usereditname {
+    margin-top: 20px;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+input#usereditupdate {
+    margin-top: 20px;
+    font-size: 20px;
+    margin-bottom: 15px;
+    background: var(--buttonbackground);
+    color:#FF773D;
+    border-radius: 24px;
+    padding: 12px;
+    width: 150px;
+    margin-left: 90px;
+}

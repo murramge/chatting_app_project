@@ -4,12 +4,13 @@ html(lang="ko")
     
         title #{pageTitle} | Chatting
         link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css")
-        link(rel="stylesheet", href="/static/css/styles.css")
-    body
-        include partials/header.pug
+        link(rel="stylesheet", href="/static/css/styles.css")   
+        link(href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Hubballi&family=Itim&family=Poor Story&family=IBM Plex Sans KR&display=swap" rel="stylesheet")
+
+    block body
         main        
             block content
-        div#no-mobile
-            span your screen is too big
+                div#no-mobile
+                    span your screen is too big
 block script
     script(src="/static/js/main.js")

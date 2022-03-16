@@ -1,11 +1,32 @@
 extends base.pug
+block body 
+    body#useredit-background
+    block content
+    div.screen-header 
+        div.screen-header__icons
+            span
+                a(href=`/friend/${loggedInUser._id}`).fa-solid.fa-x 
+    main.profile-screen
+        section.profile-screen__wrapper
+            section.user-component 
+                div.user-component__column
+                    if(!loggedInUser.avatarUrl)
+                        img(src="https://item.kakaocdn.net/do/1401e813472967e3b572fee1ee192eb89f17e489affba0627eb1eb39695f93dd").user-component__avatar.user-component__avatar--xxl 
+                    if(loggedInUser.avatarUrl)
+                        img(src="/"+loggedInUser.avatarUrl).user-component__avatar.user-component__avatar--xxl
+                div.user-component__column 
+                    div.user-component__text
+                        form(method="POST", enctype="multipart/form-data" id="input")
+                            label(for="avatar")
+                                i.fa-solid.fa-camera.fa-xl.profile-avatar-edit
+                            input(type="file" id="avatar", name="avatar", accept="image/*")
+                            div.profile__name
+                                input(placeholder="이름을 수정해주세요", name="name",id="usereditname", value=loggedInUser.name, type="text", required)
+                            div.column
+                            div.profile__userstatus
+                                input(placeholder="상태메시지를 입력해주세요", name="userstatus", id="usereditstatus",value=loggedInUser.userstatus, type="text")
+                            div.column
+                            div.profile__userupdate
+                            input(type="submit", value="완료" id="usereditupdate")
 
-block content
-    img(src="/" + loggedInUser.avatarUrl, width="100", height="100")
-    form(method="POST", enctype="multipart/form-data")
-        label(for="avatar") Avatar
-        input(type="file" id="avatar", name="avatar", accept="image/*")
-        input(placeholder="name", name="name" value=loggedInUser.name, type="text", required)
-        input(placeholder="userstatus", name="userstatus", type="text")
-        input(type="submit", value="Update")
-    include partials/footer.pug
+            include partials/footer.pug

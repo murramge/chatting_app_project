@@ -1,11 +1,36 @@
 extends base.pug
+block body 
+    body#useredit-background
+    block content
+    div.screen-header 
+        div.screen-header__icons
+            span
+                a(href=`/friend/${loggedInUser._id}`).fa-solid.fa-x 
+    main.profile-screen
+        section.profile-screen__wrapper
+            section.user-component 
+                div.user-component__column
+                    if(!friend_avatarUrl)
+                        img(src="https://item.kakaocdn.net/do/1401e813472967e3b572fee1ee192eb89f17e489affba0627eb1eb39695f93dd").user-component__avatar.user-component__avatar--xxl 
+                    if(friend_avatarUrl)
+                        img(src="/"+friend_avatarUrl).user-component__avatar.user-component__avatar--xxl
+                div.user-component__column2
+                    div.user-component__text
+                            div.friendinfo__name
+                                span#friendinfoname #{friend_name}
+                            div.friendinfo__userstatus
+                                span#friendinfouserstatus #{friend_statusmessage}
+                            div.column
+                            div.friendinfo__chat
+                                if(chat1)
+                                    a(href="/chat"+"/"+chat1._id+"/room").fas.fa-comment.fa-2x#friendinfochat
+                                    div.chatting_alem
+                                    span 1:1 채팅
+                                else
+                                    each val, index in chat
+                                        a(href="/chat"+"/"+chat[index]._id+"/room").fas.fa-comment.fa-2x#friendinfochat
+                                        div.chatting_alem
+                                        span 1:1 채팅
 
-block content
-    div
 
-        if(chat1)
-            a(href="/chat"+"/"+chat1._id+"/room").fas.fa-chevron-right.fa-xs
-        
-        else
-            each val, index in chat
-                a(href="/chat"+"/"+chat[index]._id+"/room").fas.fa-chevron-right.fa-xs
+            include partials/footer.pug

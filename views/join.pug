@@ -1,13 +1,16 @@
 extends base.pug
 
 
-block content
-    form(method="POST")
-        input(placeholder="Email",name="email", type="text", required)
-        input(placeholder="password",name="password", type="password", required)
-        input(placeholder="name",name="name", type="text",)
-        input(type="submit", value="Join")
-    hr
-    div
-        span Already have an account? 
-        a(href="/") log in now &rarr;
+block body
+    body#index-background
+    block content 
+        div.welcome-header
+            h2.welcome-header__title2 🍒 Ham Talk 🐹
+            p.welcome-header__text 이메일, 비밀번호, 이름을 적고 계정을 만들어주세요
+        form(method="POST")#login-form
+            input(placeholder="Email",name="email", type="text", required)
+            input(placeholder="password",name="password", type="password", required)
+            input(placeholder="name",name="name", type="text",)
+            input(type="submit", value="Join")
+            a(href="/").joininto 이미 계정이 있으신가요? → Log in now
+
