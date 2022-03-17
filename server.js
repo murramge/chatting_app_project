@@ -29,7 +29,7 @@ io.sockets.on('connection', function(socket){
         for(let i=0; i<result.length; i++){
             let dbData = { message:result[i].message, chat_id:result[i]._id, chattingroom_id: result[i].chatid};
             io.sockets.sockets[socket.id].emit('preload', dbData);
-            // console.log(dbData);
+            console.log(dbData);
         }
     });
     //이부분은 html측에서 메시지 이벤트 발생 시 채팅정보 (username/message)를 다른 사용자에게 전달하여 각 사용자의 html 페이지에 렌더링(emit)합니당.
@@ -37,7 +37,7 @@ io.sockets.on('connection', function(socket){
     socket.on('message', async function(data) {
         io.sockets.emit('message', data);
         const chat = await Chat.findOne({chatid:data.chattingroom_id});
-        console.log(chat);
+        // console.log(chat);
         const messages = data.message;
         chat.message.push(messages);
         chat.save(function (err, data){

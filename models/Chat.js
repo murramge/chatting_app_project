@@ -8,6 +8,8 @@ const chatSchema = new mongoose.Schema ({
     friendname: String,
     message: [String],
     chatid: String,
+    useravatarUrl: String,
+    friendavatarUrl: String,
 })
 
 
