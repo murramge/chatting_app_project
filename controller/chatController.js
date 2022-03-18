@@ -36,7 +36,19 @@ export const getfriendinfo = async (req,res) => {
         let chat = await Chat.find({$and:[
             {userid:user_id},{friendid:friend_id}
         ]});
-    
+        if (friend_avatarUrl != chat.friendavatarUrl){
+            const chat12 = await Chat.findByIdAndUpdate(chat[0]._id,{
+                friendavatarUrl:friend_avatarUrl,
+            })
+        }
+        if (friend_name != chat.friendname){
+            const chat12 = await Chat.findByIdAndUpdate(chat[0]._id,{
+                friendname:friend_name,
+            })
+        }
+        chat = await Chat.find({$and:[
+            {userid:user_id},{friendid:friend_id}
+        ]});
         return res.status(400).render("friendinfo", {pageTitle: "friendinfo",friend_name,user_name,user_id,friend_id,chat,friend_statusmessage,friend_avatarUrl});
     }
     else {
@@ -81,7 +93,19 @@ export const getfriendinfo = async (req,res) => {
             })
     
             // console.log(chat12);
-        
+            if (friend_avatarUrl != chat.useravatarUrl){
+                const chat12 = await Chat.findByIdAndUpdate(chat[0]._id,{
+                    useravatarUrl:friend_avatarUrl,
+                })
+            }
+            if (friend_name != chat.username){
+                const chat12 = await Chat.findByIdAndUpdate(chat[0]._id,{
+                    username:friend_name,
+                })
+            }
+            chat = await Chat.find({$and:[
+                {userid:user_id},{friendid:friend_id}
+            ]});
             return res.status(400).render("friendinfo", {pageTitle: "friendinfo",friend_name,user_name,user_id,friend_id,chat,friend_statusmessage,friend_avatarUrl});
             }
         }
@@ -95,6 +119,20 @@ export const getfriendinfo = async (req,res) => {
     }
     chat = await Chat.find({$and:[
         {userid:user_id},{friendid:friend_id}
+    ]});
+    chat1 = chat1[0]
+    if (friend_avatarUrl != chat.useravatarUrl){
+        const chat12 = await Chat.findByIdAndUpdate(chat1._id,{
+            useravatarUrl:friend_avatarUrl,
+        })
+    }
+    if (friend_name != chat.username){
+        const chat12 = await Chat.findByIdAndUpdate(chat1._id,{
+            username:friend_name,
+        })
+    }
+    chat1 = await Chat.find({$and:[
+        {userid:friend_id},{friendid:user_id}
     ]});
     chat1 = chat1[0]
     console.log(chat1);

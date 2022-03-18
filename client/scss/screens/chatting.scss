@@ -18,7 +18,7 @@ body {
   padding-top: 35px;
   padding-bottom: 35px;
   border-radius: 0px 0px 10px 10px;
-  background-color: #F7971E;
+  background-color: #ffbe68;
 }
 
 .alt-header_column {
@@ -79,7 +79,7 @@ body {
   
 
     #message {
-    width:390px;
+    width: 100%;
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
@@ -112,12 +112,6 @@ body {
 
 }
 
-  // #form-group{
-  //   display: flex;
-  //   width:500px;
-  //   justify-content: space-between;
-  // }
-  // .form-group {
-  //   width:500px;
-  // }
-  /*# sourceMappingURL=style.css.map */
+#form-group {
+  display: flex;
+}

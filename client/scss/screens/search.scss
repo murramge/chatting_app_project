@@ -1,0 +1,104 @@
+body {
+    font: 12px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+.fas.fa-chevron-left {
+  color: #ffffff;
+  margin-left: 20px;
+}
+
+  
+  .background {
+    background-color: #fff5e1;
+    height: 100vh; }
+  
+.alt-header2{
+  padding-top: 35px;
+  padding-bottom: 35px;
+  border-radius: 0px 0px 10px 10px;
+  background-color: #ffbe68;
+}
+
+.alt-header_column2 {
+  width: 33%;
+  font-size: 20px;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+.alt-header_column2:nth-child(2) {
+  width: 60%;
+  margin-top: -20px;
+}
+.alt-header__title {
+  font-size: 32px;
+  color: white;
+
+}
+
+.alt-header_column2:first-child {
+  margin-right: auto;
+  color: white;
+
+}
+
+.alt-header_column2:nth-child(2) {
+  text-align: center;
+}
+.alt-header_column2:last-child {
+  margin-left: auto;
+  color: white;
+  display: flex;
+
+}
+
+#friend_email {
+    width:250px;
+    height: 30px;
+    background-color: #fff;
+    margin-top: -5px;
+    margin-left: -20px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+.friend_submit {
+    background: rgba(255, 255, 255, 0.753);
+    color:#FF773D;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 12px;
+    margin-top: -5px;
+    margin-left: 10px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+
+
+}
+#friend_info {
+    margin-top: 50px;
+}
+.user-component__column3{
+    margin-top: 15px;
+    margin-left: -10px;
+    height: 50px;
+}
+.friend-name {
+    font-size: 20px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+.friend-plus {
+
+    border-color: transparent;
+    background: var(--buttonbackground);
+    color:#FF773D;
+    border-radius: 24px;
+    padding: 12px;
+    font-size: 13px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+.friend_error {
+    font-size: 20px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    text-align: center;
+    align-items: center;
+    margin-top: 50px;
+}
+#user_id {
+  display: none;
+}

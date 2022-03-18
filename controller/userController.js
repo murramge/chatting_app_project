@@ -79,7 +79,7 @@ export const postSearch = async(req,res) =>{
     const foundUser = await Users.findOne({email:useremail});
     console.log(foundUser);
     if(!foundUser){
-        return res.render("search",{errorMessage:"Email could not be found"});
+        return res.render("search",{errorMessage:"친구를 찾을 수 없습니다 :("});
     }
     return res.render("search",{foundUser});
 };
