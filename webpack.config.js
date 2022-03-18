@@ -5,6 +5,7 @@ module.exports = {
     entry: {
         main:"./client/js/main.js",
         chatting:"./client/js/chatting.js",
+        friendPlus:"./client/js/friendPlus.js",
     },
     plugins: [new MiniCssExtractPlugin({
         filename: "css/styles.css",

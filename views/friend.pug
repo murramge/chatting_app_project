@@ -6,13 +6,11 @@ block body
             h1.screen-header__title Friends
             div.screen-header__icons
                 span
-                    a(href="/friend"+"/"+loggedInUser._id+"/add").fa-solid.fa-user-plus.fa-xl 
+                    a(href="/friend/search").fa-solid.fa-user-plus.fa-xl 
         
         main.friends-screen 
             div.user-component  
                     div.user-component__column
-                        if(!loggedInUser.avatarUrl)
-                            img(src="https://item.kakaocdn.net/do/1401e813472967e3b572fee1ee192eb89f17e489affba0627eb1eb39695f93dd").user-component__avatar.user-component__avatar--sm 
                         if(loggedInUser.avatarUrl)
                             img(src="/"+loggedInUser.avatarUrl).user-component__avatar.user-component__avatar--sm 
                         div.user-component__text
@@ -32,10 +30,7 @@ block body
                             div.user-component
                                 div.user-component__column 
                                     if (friend)
-                                        if (!friend[index].avatarUrl)
-                                            img(src="https://item.kakaocdn.net/do/1401e813472967e3b572fee1ee192eb89f17e489affba0627eb1eb39695f93dd").user-component__avatar.user-component__avatar--sm
-                                        else
-                                            img(src="/"+friend[index].avatarUrl).user-component__avatar.user-component__avatar--sm 
+                                        img(src="/"+friend[index].avatarUrl).user-component__avatar.user-component__avatar--sm 
                                         div.user-component__text #{friend[index].name}
                                         span.user-component__status #{friend[index].userstatus}
                                 div.user-component__column

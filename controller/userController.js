@@ -71,24 +71,54 @@ export const logout = (req, res) => {
     return res.redirect("/");
 };
 
-export const getFriendAdd = (req, res) => {
-    return res.render("friendadd", {pageTitle: "FriendAdd"});
+export const getSearch = (req, res) => {
+    return res.render("search", {pageTitle: "Search"});
 }
-export const postFriendAdd = async (req, res) => {
-    const {id} = req.params;
-    const {
-        body: {email},
-    } = req;
-    const exists = await Users.findOne(
-        {email},
-        )
-    if (!exists) {
-        return res.redirect(`/friend/${id}/add`);
+export const postSearch = async(req,res) =>{
+    const {useremail} = req.body;
+    const foundUser = await Users.findOne({email:useremail});
+    console.log(foundUser);
+    if(!foundUser){
+        return res.render("search",{errorMessage:"Email could not be found"});
     }
-    const friend = exists;
-    console.log(id);
-    const user = await Users.findById(id);
-    user.friends.push(friend);
-    user.save();
+    return res.render("search",{foundUser});
+};
+export const plusFriend = async(req,res) =>{
+    const {body:friendUserName,
+        session:{user},
+    } = req;
+    // console.log(friendUserName);
+    let flag;
+    const friendUser = await Users.findOne({name:friendUserName.friendUserName});
+    const friend=friendUser._id;
+    const currentUser = await Users.findById(user._id);
+    console.log(friendUser);
+    for(let num=0;num<currentUser.friends.length;num++){
+        flag = currentUser.friends[num]._id.toString()===friendUser._id.toString();
+        if(flag){
+            return res.sendStatus(404);
+        }
+    } 
+    currentUser.friends.push(friend);
+    currentUser.save();
+    req.session.user = currentUser;
+    return res.sendStatus(201); 
+};
 
+export const FriendAdd = async (req, res) => {
+    const {body: friendUserName,session:{user},} = req;
+    let exists;
+    const friendUser = await Users.findOne({username:friendUserName.friendUserName});
+    const friend = friendUser._id;
+    const currentuser = await Users.findById(user._id);
+    for(let num=0; num<currentuser.friends.length;num++){
+        exists = currentuser.friends[num]._id.toString() === friendUser._id.toString();
+        if(exists) {
+            return res.sendStatus(404);
+        }
+    }
+    currentuser.friends.push(friend);
+    currentuser.save();
+    req.session.user = currentuser;
+    return res.sendStatus(201); 
 }

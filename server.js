@@ -2,6 +2,7 @@ import express from "express";
 import rootRouter from "./router/rootRouter";
 import friendRouter from "./router/friendRouter";
 import chatRouter from "./router/chatRouter";
+import apiRouter from "./Router/apiRouter";
 import "./db";
 import "./models/Users";
 import session from "express-session";
@@ -63,11 +64,21 @@ app.use((req,res,next) => {
         next();
     })
 })
+
+
 app.set("view engine", "pug");
 app.use(localsMiddleware);
 app.use("/static", express.static("assets"));
 app.use("/", rootRouter);
 app.use("/friend", friendRouter);
 app.use("/chat",chatRouter);
+app.use(express.json());
+app.use((req, res, next) => {
+    res.header("Cross-Origin-Embedder-Policy", "require-corp");
+    res.header("Cross-Origin-Opener-Policy", "same-origin");
+    next();
+  });
 app.use("/uploads", express.static("uploads"));
+app.use("/api",apiRouter);
+
 export default app;

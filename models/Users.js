@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 const userSchema = new mongoose.Schema ({
     email: {type:String, required:true, unique:true},
     name: {type:String},
-    avatarUrl: String,
+    avatarUrl: {type:String, default:"uploads/basic.png"},
     password: {type:String},
     userstatus: {type:String},
     friends: [{type:mongoose.Schema.Types.ObjectId, ref:"Users"}],

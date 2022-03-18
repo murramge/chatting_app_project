@@ -1,0 +1,18 @@
+
+extends base
+block content
+    form(method="POST")
+        input.friend-email(placeholder="Enter userEmail",name="useremail", type="email")
+        input(type="submit",value="Search")
+        hr
+        if foundUser
+            div.friend-componet
+                img(src="/"+foundUser.avatarUrl)
+                span.friend-name #{foundUser.name}
+                button.friend-plus 
+                    i.fas.fa-plus
+    if errorMessage
+        span=errorMessage
+block script
+    if foundUser
+        script(src="/static/js/friendPlus.js") 
