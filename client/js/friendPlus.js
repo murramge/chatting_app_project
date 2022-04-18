@@ -16,8 +16,8 @@ const handlePlus = (event)=>{
         body:JSON.stringify({friendUserName}),
     });
     friendUserName.value="";
-    window.location.href=`/friend/${user_id}`; 
-    
+    // window.location.href=`/friend/${user_id}`; 
+    location.reload(location.href=`/friend/${user_id}`);
 }
 
 friendPlus.addEventListener("click",handlePlus);

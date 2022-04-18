@@ -15,7 +15,7 @@
   \*********************************/
 /***/ (() => {
 
-eval("var friendName = document.querySelector(\".friend-name\");\nvar friendPlus = document.querySelector(\".friend-plus\");\nvar userid = document.querySelector(\"#user_id\");\n\nvar handlePlus = function handlePlus(event) {\n  event.preventDefault();\n  console.log(\"hi\");\n  var friendUserName = friendName.textContent;\n  var user_id = userid.value;\n  console.log(friendUserName);\n  fetch(\"/api/search/add\", {\n    method: \"POST\",\n    headers: {\n      \"Content-Type\": \"application/json\"\n    },\n    body: JSON.stringify({\n      friendUserName: friendUserName\n    })\n  });\n  friendUserName.value = \"\";\n  window.location.href = \"/friend/\".concat(user_id);\n};\n\nfriendPlus.addEventListener(\"click\", handlePlus);\n\n//# sourceURL=webpack://chatting_app_project/./client/js/friendPlus.js?");
+eval("var friendName = document.querySelector(\".friend-name\");\nvar friendPlus = document.querySelector(\".friend-plus\");\nvar userid = document.querySelector(\"#user_id\");\n\nvar handlePlus = function handlePlus(event) {\n  event.preventDefault();\n  console.log(\"hi\");\n  var friendUserName = friendName.textContent;\n  var user_id = userid.value;\n  console.log(friendUserName);\n  fetch(\"/api/search/add\", {\n    method: \"POST\",\n    headers: {\n      \"Content-Type\": \"application/json\"\n    },\n    body: JSON.stringify({\n      friendUserName: friendUserName\n    })\n  });\n  friendUserName.value = \"\"; // window.location.href=`/friend/${user_id}`; \n\n  location.replace(location.href = \"/friend/\".concat(user_id));\n};\n\nfriendPlus.addEventListener(\"click\", handlePlus);\n\n//# sourceURL=webpack://chatting_app_project/./client/js/friendPlus.js?");
 
 /***/ })
 

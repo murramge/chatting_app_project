@@ -161,6 +161,8 @@ export const getchatting = async (req, res) => {
     const friendname = chat.friendname;
     const useravatarUrl = user.avatarUrl;
     const friendavatarUrl = friend.avatarUrl;
+
+
     return res.status(400).render("chatting", {pageTitle: "chatting",chat_id,chattingroom_id,username,friendname,chatuser,useravatarUrl,friendavatarUrl});
 
 }
@@ -171,7 +173,7 @@ export const getchattingroom = async (req, res) => {
     const chat = await Chat.find({$or:[
         {userid:id},{friendid:id}
     ]});
-
+    
     
     return res.status(400).render("chat", {pageTitle: "chat",chat,id});
 }
