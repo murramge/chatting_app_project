@@ -17,8 +17,9 @@ import "regenerator-runtime";
 
 const app = express();
 const server = http.createServer(app);
-const handleListening = () => console.log("Server listening on port 4000");
-server.listen(4000, handleListening);
+const PORT = process.env.PORT || 4000;
+const handleListening = () => console.log(`Server listening on port ${PORT}`);
+server.listen(PORT, handleListening);
 app.set("views" , process.cwd() + "/src/views")
 const io = socketio(server);
 
@@ -61,7 +62,7 @@ io.sockets.on('connection', function(socket){
 
 app.use(express.urlencoded({ extended: true}))
 app.use(session({
-    secret: "Hello!",
+    secret: process.env.COOKIE_SECRET,
     resave:true,
     saveUninitialized:true,
 }))
