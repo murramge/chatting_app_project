@@ -25,7 +25,7 @@ const io = socketio(server);
 
 //socket 부분입니당
 io.sockets.on('connection', function(socket){
-    // db로부터 데이터 가져오기 입니당가져온 데이터는 result에 포함되고, 전체 아이템 수를 반복하여 각 아이템에 대해
+    // db로부터 데이터 가져오기 입니당. 가져온 데이터는 result에 포함되고, 전체 아이템 수를 반복하여 각 아이템에 대해
     // name과 message로 분류하여 dbdate에 저장 후 socket.io 모듈 메서드를 통해 html로 데이터를 전달합니당
     // 이 때 emit 는 preload , dbData로 사용했는데 이것은 html 메서드와 짝이 되어 html 측에 db data를 전달합니다!!
     //let i=result.length i>0; i--
