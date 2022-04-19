@@ -2,7 +2,7 @@ import express from "express";
 import rootRouter from "./router/rootRouter";
 import friendRouter from "./router/friendRouter";
 import chatRouter from "./router/chatRouter";
-import apiRouter from "./Router/apiRouter";
+import apiRouter from "./router/apiRouter";
 import "./db";
 import "./models/Users";
 import session from "express-session";
