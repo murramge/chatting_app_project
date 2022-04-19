@@ -4,8 +4,10 @@
   "description": "The chat app",
   "main": "server.js",
   "dependencies": {
+    "@babel/runtime": "^7.17.9",
     "bcrypt": "^5.0.1",
     "connect": "^3.7.0",
+    "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "express-session": "^1.17.2",
     "jquery": "^3.6.0",
@@ -16,8 +18,10 @@
     "socket.io": "^2.4.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.5",
     "@babel/node": "^7.16.8",
+    "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.7.0",
@@ -30,8 +34,10 @@
     "webpack-cli": "^4.9.2"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node server.js",
-    "assets": "webpack --config webpack.config.js"
+    "start": "node build/server.js",
+    "build:server": "babel src -d build",
+    "dev:server": "nodemon --exec babel-node src/server.js",
+    "dev:assets": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",

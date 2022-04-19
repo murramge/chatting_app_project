@@ -11,13 +11,15 @@ import http from "http";
 import connect from "connect";
 import socketio from "socket.io"
 import Chat from "./models/Chat"
+import "dotenv/config"
+import "regenerator-runtime";
 
 
 const app = express();
 const server = http.createServer(app);
 const handleListening = () => console.log("Server listening on port 4000");
 server.listen(4000, handleListening);
-
+app.set("views" , process.cwd() + "/src/views")
 const io = socketio(server);
 
 //socket 부분입니당
