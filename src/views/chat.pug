@@ -16,7 +16,7 @@ block body
                             div.user-component
                                 div.user-component__column 
                                     if (id == chat_user)
-                                        img(src=chat[index].friendavatarUrl crossorigin).user-component__avatar.user-component__avatar--sm 
+                                        img(src=chat[index].friendavatarUrl).user-component__avatar.user-component__avatar--sm 
                                         div.user-component__text #{chat[index].friendname}
                                         span.user-component__status #{chat[index].message[messagelength]}
                                     else if (id != chat_user)
