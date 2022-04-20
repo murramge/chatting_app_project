@@ -60,7 +60,7 @@ export const postUserEdit = async (req, res) => {
         body: { userstatus, name},
         file,
     } = req;
-    const updatedUser = await Users.findByIdAndUpdate(_id,{ name:name, userstatus:userstatus, avatarUrl: file ? file.path : avatarUrl,}, {new: true});
+    const updatedUser = await Users.findByIdAndUpdate(_id,{ name:name, userstatus:userstatus, avatarUrl: file ? file.location : avatarUrl,}, {new: true});
     req.session.user = updatedUser;
     console.log(file);
     return res.redirect(`/friend/${_id}`);

@@ -11,7 +11,7 @@ block body
             section.user-component 
                 div.user-component__column
                     if(friend_avatarUrl)
-                        img(src="/"+friend_avatarUrl).user-component__avatar.user-component__avatar--xxl
+                        img(src=friend_avatarUrl crossorigin).user-component__avatar.user-component__avatar--xxl
                 div.user-component__column2
                     div.user-component__text
                             div.friendinfo__name
