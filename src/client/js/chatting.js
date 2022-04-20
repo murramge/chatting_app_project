@@ -1,3 +1,4 @@
+
 $(function(){
     const socket = io.connect();
     socket.on('message',function(data){
@@ -21,13 +22,12 @@ $(function(){
     });
 
     $(document).on("click",'#button', (function(){
-    socket.emit('message',
-        {
-            chat_id: $('#chat_id').val(),
-            chattingroom_id: $('#chattingroom_id').val(),
-            message:$('#message').val()
-        });
-        $('#message').val('');
-    }));
-
+        socket.emit('message',
+            {
+                chat_id: $('#chat_id').val(),
+                chattingroom_id: $('#chattingroom_id').val(),
+                message:$('#message').val()
+            });
+            $('#message').val('');
+        }));
 });

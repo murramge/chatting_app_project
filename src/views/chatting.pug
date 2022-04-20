@@ -7,7 +7,7 @@ html(lang="en")
         link(rel="stylesheet", href="/static/css/styles.css")
         link(href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Hubballi&family=Itim&family=Poor Story&family=IBM Plex Sans KR&display=swap" rel="stylesheet")
         link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css")
-        script(src="http://code.jquery.com/jquery-1.7.1.js")
+        script(type="text/javascript" src="https://hamstertalk.herokuapp.com/static/js/jquery.min.js")
         script(src="/socket.io/socket.io.js")
         script(src="/static/js/chatting.js")
         
@@ -24,11 +24,11 @@ html(lang="en")
                     span 🐹 #{friendname}🍒
 
 
-    form(method="POST").form-group
+    form(method="POST")#formgroup
             div.chatting
                 div#content
             input(placeholder="ChatId",name="Chat Id", type="text", id="chat_id", class="form-control" value=chat_id, required)
             input(placeholder="chattingroom_id", name="chattingroom_id", type="text", id="chattingroom_id", class="form-control", value=chattingroom_id, required)
-            div#form-group
+            div#formgroup
                 input(placeholder="",name="Message", type="text", id="message",  required)
                 input(type="submit", value="전송", id="button")

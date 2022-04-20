@@ -46,7 +46,7 @@ io.sockets.on('connection', function(socket){
     socket.on('message', async function(data) {
         io.sockets.emit('message', data);
         const chat = await Chat.findOne({chatid:data.chattingroom_id});
-        // console.log(chat);
+        console.log(chat);
         const messages = data.message;
         chat.message.push(messages);
         chat.save(function (err, data){
@@ -54,7 +54,7 @@ io.sockets.on('connection', function(socket){
                 console.log(err);
             }
             console.log('message is inserted');
-            // console.log(chat);
+            console.log(chat);
         })
     })
 })
