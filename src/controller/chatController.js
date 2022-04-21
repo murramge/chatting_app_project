@@ -2,178 +2,56 @@
 import Users from "../models/Users";
 import Chat from "../models/Chat";
 export const getfriendinfo = async (req,res) => {
-    const {id} = req.params;
+    const {id} = req.params; //친구
     const {
         session: {
             user: {
-                _id,
-                name,
-                avatarUrl,
+                _id, //나
             },
         },
     } = req;
 
     let friend = await Users.findById(id);
+    let user_id = _id;
+    let friend_id = id;
     let friend_name = friend.name;
     let friend_statusmessage = friend.userstatus;
     let friend_avatarUrl = friend.avatarUrl;
-    let user_avatarUrl = avatarUrl;
-    let user_name = name;
-    let user_id = _id;
-    let friend_id = id;
-
-    
-    const exists = await Chat.exists({$and:[
-        {userid:user_id},{friendid:friend_id}
-    ]});  
-
-
-    let chat = await Chat.find({$and:[
-        {userid:user_id},{friendid:friend_id}
-    ]});
-
-    if(exists){
-        let chat = await Chat.find({$and:[
-            {userid:user_id},{friendid:friend_id}
-        ]});
-        if (friend_avatarUrl != chat.friendavatarUrl){
-            const chat12 = await Chat.findByIdAndUpdate(chat[0]._id,{
-                friendavatarUrl:friend_avatarUrl,
-            })
-        }
-        if (friend_name != chat.friendname){
-            const chat12 = await Chat.findByIdAndUpdate(chat[0]._id,{
-                friendname:friend_name,
-            })
-        }
-        chat = await Chat.find({$and:[
-            {userid:user_id},{friendid:friend_id}
-        ]});
-        return res.status(400).render("friendinfo", {pageTitle: "friendinfo",friend_name,user_name,user_id,friend_id,chat,friend_statusmessage,friend_avatarUrl});
+    const findchat = await Chat.exists({$and:[{user:user_id},{user:friend_id}]});
+    console.log(findchat);
+    if (findchat) {
+        return res.status(400).render("friendinfo", {pageTitle: "friendinfo",findchat,friend_name,friend_statusmessage,friend_avatarUrl});
     }
-    else {
-    function generateRandomCode(n) {
-        let str = ''
-        for (let i = 0; i < n; i++) {
-        str += Math.floor(Math.random() * 10)
-        }
-        return str
-    }
-    let chatid = generateRandomCode(6);
-    let chat1 = await Chat.find({$and:[
-        {userid:friend_id},{friendid:user_id}
-    ]});
-    // console.log(chat1);
-    if(chat1[0]==null) {
+        const chat = await Chat.create({
+        user:user_id
+    });
+    chat.user.push(friend_id);
+    chat.save();
+    return res.status(400).render("friendinfo", {pageTitle: "friendinfo",chat,friend_name,friend_statusmessage,friend_avatarUrl});
 
-        const chatusers = await Chat.create({
-        userid: user_id,
-        friendid: friend_id,
-        username: user_name,
-        friendname: friend_name,
-        chatid: chatid,
-        useravatarUrl: user_avatarUrl,
-        friendavatarUrl: friend_avatarUrl,
-        })
-        // console.log(chatusers);
-        chat = await Chat.find({$and:[
-            {userid:user_id},{friendid:friend_id}
-        ]});        
-    return res.status(400).render("friendinfo", {pageTitle: "friendinfo",friend_name,user_name,user_id,friend_id,chat,friend_statusmessage,friend_avatarUrl});
-    }
-    else if(chat1[0]==[user_id]) {
-        try {
-            chat = await Chat.find({$and:[
-                {userid:user_id},{friendid:friend_id}
-            ]});
-            if(chat != chat1){
-            const chat1_id = chat1[0].chatid; 
-            const chat12 = await Chat.findByIdAndUpdate(chat._id,{
-                chatid:chat1_id,
-            })
-    
-            // console.log(chat12);
-            if (friend_avatarUrl != chat.useravatarUrl){
-                const chat12 = await Chat.findByIdAndUpdate(chat[0]._id,{
-                    useravatarUrl:friend_avatarUrl,
-                })
-            }
-            if (friend_name != chat.username){
-                const chat12 = await Chat.findByIdAndUpdate(chat[0]._id,{
-                    username:friend_name,
-                })
-            }
-            chat = await Chat.find({$and:[
-                {userid:user_id},{friendid:friend_id}
-            ]});
-            return res.status(400).render("friendinfo", {pageTitle: "friendinfo",friend_name,user_name,user_id,friend_id,chat,friend_statusmessage,friend_avatarUrl});
-            }
-        }
-        catch {
-            chat = await Chat.find({$and:[
-                {userid:user_id},{friendid:friend_id}
-            ]});
-            // console.log("hi")
-            return res.status(400).render("friendinfo", {pageTitle: "friendinfo",friend_name,user_name,user_id,friend_id,chat,friend_statusmessage,friend_avatarUrl});
-        }
-    }
-    chat = await Chat.find({$and:[
-        {userid:user_id},{friendid:friend_id}
-    ]});
-    chat1 = chat1[0]
-    if (friend_avatarUrl != chat.useravatarUrl){
-        const chat12 = await Chat.findByIdAndUpdate(chat1._id,{
-            useravatarUrl:friend_avatarUrl,
-        })
-    }
-    if (friend_name != chat.username){
-        const chat12 = await Chat.findByIdAndUpdate(chat1._id,{
-            username:friend_name,
-        })
-    }
-    chat1 = await Chat.find({$and:[
-        {userid:friend_id},{friendid:user_id}
-    ]});
-    chat1 = chat1[0]
-    console.log(chat1);
-
-    return res.status(400).render("friendinfo", {pageTitle: "friendinfo",friend_name,user_name,user_id,friend_id,chat1,friend_statusmessage,friend_avatarUrl});
 }
-}
+
 export const getchatting = async (req, res) => {
 
     const {id} = req.params;
-    const chat = await Chat.findById(id);
     const {
         session: {
             user: {
-                _id,
+                name,
             },
         }
     } = req;
-    const user = await Users.findById(_id).populate('friends');
-    const friend = user.friends
-    const chat_id = chat._id;
-    const chattingroom_id = chat.chatid;
-    const chatuser = chat.username;
-    console.log(chatuser);
-    const username = user.name;
-    const friendname = chat.friendname;
-    const useravatarUrl = user.avatarUrl;
-    const friendavatarUrl = friend.avatarUrl;
-
-
-    return res.status(400).render("chatting", {pageTitle: "chatting",chat_id,chattingroom_id,username,friendname,chatuser,useravatarUrl,friendavatarUrl});
+    const chat = await Chat.find({_id:id}).populate("user");
+    const username = name;
+    const name1 = chat[0].user[0].name;
+    const name2 = chat[0].user[1].name;
+    return res.status(400).render("chatting", {pageTitle: "chatting",chat,username,name1,name2});
 
 }
 
 
 export const getchattingroom = async (req, res) => {
     const {id} = req.params;
-    const chat = await Chat.find({$or:[
-        {userid:id},{friendid:id}
-    ]});
-    
-    
+    const chat = await Chat.find({user:id}).populate("user");
     return res.status(400).render("chat", {pageTitle: "chat",chat,id});
 }

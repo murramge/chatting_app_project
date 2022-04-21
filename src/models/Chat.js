@@ -2,14 +2,8 @@ import mongoose from "mongoose";
 
 
 const chatSchema = new mongoose.Schema ({
-    userid: [{type:String, ref:"Users"}],
-    friendid: [{type:String, ref:"Users"}],
-    username: String, 
-    friendname: String,
+    user : [{type:mongoose.Schema.Types.ObjectId, ref:"Users"}],
     message: [String],
-    chatid: String,
-    useravatarUrl: String,
-    friendavatarUrl: String,
 })
 
 

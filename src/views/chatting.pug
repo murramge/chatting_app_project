@@ -18,17 +18,18 @@ html(lang="en")
                     span
                         i.fas.fa-chevron-left
             h1.alt-header_column 
-                if(username != chatuser)
-                    span 🐹 #{chatuser}🍒
-                else
-                    span 🐹 #{friendname}🍒
+                if(username != name1)
+                    span 🐹 #{name1}🍒
+                else 
+                    span 🐹 #{name2}🍒
 
 
     form(method="POST")#formgroup
             div.chatting
                 div#content
-            input(placeholder="ChatId",name="Chat Id", type="text", id="chat_id", class="form-control" value=chat_id, required)
-            input(placeholder="chattingroom_id", name="chattingroom_id", type="text", id="chattingroom_id", class="form-control", value=chattingroom_id, required)
+            div#chatId(data-chatid=chat[0]._id)
+            input(placeholder="ChatId",name="Chat Id", type="text", id="_id", class="form-control" value=chat[0]._id, required)
+            input(placeholder="chattingroom_id", name="chattingroom_id", type="text", id="chattingroom_id", class="form-control", required)
             div#formgroup
                 input(placeholder="",name="Message", type="text", id="message",  required)
                 input(type="submit", value="전송", id="button")

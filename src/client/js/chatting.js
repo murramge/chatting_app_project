@@ -1,32 +1,27 @@
 
 $(function(){
     const socket = io.connect();
+    const chatId = document.getElementById('chatId');
+    const chatID=chatId.dataset.chatid;
+    socket.emit('joinRoom',{
+        chatID
+    });
     socket.on('message',function(data){
-        let chattingroom_id = document.getElementById("chattingroom_id").value;
         let messages = data.message;
-        console.log(messages);
-            if(chattingroom_id == data.chattingroom_id) {
-                    $('#content').append($('<p class="talk me">').text(messages));
-            }
-    })
+                $('#content').append($('<p class="talk me">').text(messages));
+                $(".chatting").scrollTop($(".chatting")[0].scrollHeight);
+                })
     socket.on('preload',function(data){
-        let chattingroom_id = document.getElementById("chattingroom_id").value;
         let messages = data.message;
         console.log(messages);
-            if(chattingroom_id == data.chattingroom_id) {
-                for (let i=0; i< messages.length; i++) {
-                        $('#content').append($('<p class="talk me">').text(messages[i]));
-                }
-
-            }
+                $('#content').append($('<p class="talk me">').text(messages));
     });
 
     $(document).on("click",'#button', (function(){
         socket.emit('message',
             {
-                chat_id: $('#chat_id').val(),
-                chattingroom_id: $('#chattingroom_id').val(),
-                message:$('#message').val()
+                _id: $('#_id').val(),
+                message:$('#message').val(),
             });
             $('#message').val('');
         }));

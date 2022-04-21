@@ -11,17 +11,13 @@ block body
                     div.friend_info_link
                         a(href="/chat"+"/"+chat[index]._id+"/room").friend_info_link
                             div.hidden 
-                                #{chat_user = chat[index].userid} 
                                 #{messagelength = chat[index].message.length-1}
-                            div.user-component
+                            div.user-component-chat
                                 div.user-component__column 
-                                    if (id == chat_user)
-                                        img(src=chat[index].friendavatarUrl).user-component__avatar.user-component__avatar--sm 
-                                        div.user-component__text #{chat[index].friendname}
-                                        span.user-component__status #{chat[index].message[messagelength]}
-                                    else if (id != chat_user)
-                                        img(src=chat[index].useravatarUrl).user-component__avatar.user-component__avatar--sm 
-                                        div.user-component__text #{chat[index].username}
+                                -for(let i=0; i<2; i++)
+                                    if(loggedInUser._id!=chat[index].user[i]._id)
+                                        img(src=chat[index].user[i].avatarUrl ).user-component__avatar.user-component__avatar--sm 
+                                        div.user-component__text #{chat[index].user[i].name}
                                         span.user-component__status #{chat[index].message[messagelength]}
                                 div.user-component__column
         include partials/footer.pug

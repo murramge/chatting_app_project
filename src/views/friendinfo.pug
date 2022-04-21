@@ -11,7 +11,7 @@ block body
             section.user-component 
                 div.user-component__column
                     if(friend_avatarUrl)
-                        img(src=friend_avatarUrl crossorigin).user-component__avatar.user-component__avatar--xxl
+                        img(src=friend_avatarUrl).user-component__avatar.user-component__avatar--xxl
                 div.user-component__column2
                     div.user-component__text
                             div.friendinfo__name
@@ -20,15 +20,12 @@ block body
                                 span#friendinfouserstatus #{friend_statusmessage}
                             div.column
                             div.friendinfo__chat
-                                if(chat1)
-                                    a(href="/chat"+"/"+chat1._id+"/room").fas.fa-comment.fa-2x#friendinfochat
+                                    if(findchat) 
+                                        a(href="/chat"+"/"+findchat._id+"/room").fas.fa-comment.fa-2x#friendinfochat
+                                    else
+                                        a(href="/chat"+"/"+chat._id+"/room").fas.fa-comment.fa-2x#friendinfochat
                                     div.chatting_alem
                                     span 1:1 채팅
-                                else
-                                    each val, index in chat
-                                        a(href="/chat"+"/"+chat[index]._id+"/room").fas.fa-comment.fa-2x#friendinfochat
-                                        div.chatting_alem
-                                        span 1:1 채팅
 
 
             include partials/footer.pug

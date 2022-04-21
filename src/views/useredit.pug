@@ -11,7 +11,7 @@ block body
             section.user-component 
                 div.user-component__column
                     if(loggedInUser.avatarUrl)
-                        img(src=loggedInUser.avatarUrl crossorigin).user-component__avatar.user-component__avatar--xxl
+                        img(src=loggedInUser.avatarUrl).user-component__avatar.user-component__avatar--xxl
                 div.user-component__column 
                     div.user-component__text
                         form(method="POST", enctype="multipart/form-data" id="input")

@@ -94,6 +94,7 @@ body {
     }
   .chatting {
     height: 80vh;
+    overflow: auto;
   }
   #button {
     background-color: #F7971E;
@@ -113,5 +114,9 @@ body {
 }
 
 #form-group {
+  display: flex;
+}
+div#formgroup {
+  width:100%;
   display: flex;
 }

@@ -42,9 +42,6 @@ export const getFriend = async (req, res) => {
     res.render("friend", {pageTitle:"Friend", friend});  
 }
 
-export const postFriend = (req, res) => {
-
-}
 export const getUserEdit = (req, res) => {
     return res.render("useredit", {pageTitle:"UserEdit"});
 }
