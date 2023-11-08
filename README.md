@@ -95,9 +95,4 @@
  - 하단 바 맨 오른쪽은 logout 이다.
  
  
-### HomePageLink
-  https://hamstertalk.herokuapp.com/
-#### test용 계정
-1. 이메일: test@test.com 비밀번호 : 0000
-2. 이메일: test2@test.com 비밀번호 : 0000
-3. 이메일: test3@test.com 비밀번호 : 0000
+
